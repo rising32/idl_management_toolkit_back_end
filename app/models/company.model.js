@@ -139,7 +139,7 @@ Company.addCompanyMember = (cm, result) => {
 
 //Get All Company Members
 Company.getCompanyMembers = (member_id, result) => {
-  sql.query("select o.member_id, u.* from tbl_user u, (SELECT cm2.* FROM `tbl_company_member` cm1, tbl_company_member cm2 WHERE cm1.member_id = ? AND cm1.company_id = cm2.company_id) o where u.user_id = o.member_id", 
+  sql.query("select o.*, u.* from tbl_user u, (SELECT cm2.* FROM `tbl_company_member` cm1, tbl_company_member cm2 WHERE cm1.member_id = ? AND cm1.company_id = cm2.company_id) o where u.user_id = o.member_id", 
     member_id, (err, res) => {
     if (err) {
       console.log("error: ", err);
