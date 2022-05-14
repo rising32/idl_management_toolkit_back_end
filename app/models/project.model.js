@@ -273,7 +273,7 @@ sql.query(
             console.log("error: ", err);
             result(err, null);
             return;
-          }
+          }          
           var result_data = getWorkDaysPerMonth(res, resWS, year, "client");
           result(null, {data:result_data});
         });        
@@ -285,8 +285,8 @@ function getWorkDaysPerMonth(res, resWS, year, option)
   var data = [];
   var result_data = [];
   //===================================================== monthly work days plan data ==========================
-  //get monthly work days from work settings
-  var first_day = resWS[0].first_day_of_week;
+  //get monthly work days from work settings  
+  var first_day = new Date(resWS[0].first_day_of_week).getDate();
   if(first_day < 10) 
     first_day = '0' + first_day;
   var first_day_this_year = new Date(year + "-01-" + first_day); 
