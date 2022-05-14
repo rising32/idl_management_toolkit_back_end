@@ -75,7 +75,25 @@ exports.getCompanyProjects = (req, res) => {
     }
   });
 };
-
+//Get Projects assigned me
+exports.getProjectsAssignedMe = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }  
+  Project.getProjectsAssignedMe(req.body.user_id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the Company."
+      });
+    else {
+      res.send(data);      
+    }
+  });
+};
 //Get Client Projects and not assigned to client
 exports.getClientProjectsNoAssign = (req, res) => {
   // Validate request
@@ -520,6 +538,26 @@ exports.getCompanyTasks = (req, res) => {
     });
   } 
   Task.getCompanyTasks(req.body.company_id, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while getting the User's tasks."
+      });
+    else {
+      res.send(data);      
+    }
+  });
+};
+
+// Get Company's all tasks
+exports.getTasksAssignedMe = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  } 
+  Task.getTasksAssignedMe(req.body.user_id, (err, data) => {
     if (err)
       res.status(500).send({
         message:

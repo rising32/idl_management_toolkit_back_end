@@ -13,21 +13,24 @@ module.exports = app => {
     //Get Company Project
     app.post("/project/get_company_projects", project.getCompanyProjects);
 
+    //Get Project assigned to me
+    app.post("/project/get_assigned_me", project.getProjectsAssignedMe);
+
     //Get My Project linked with this client or not linked with any one
     app.post("/project/get/client_no_assign", project.getClientProjectsNoAssign);
 
     //Regist Project Manager
     app.post("/project/regist_manager", project.registManager);
 
-  //==================================================== Project Type ==========================================================
-    // Create a new Project Type 
-    app.post("/project/create_type", project.createType);
+  // //==================================================== Project Type ==========================================================
+  //   // Create a new Project Type 
+  //   app.post("/project/create_type", project.createType);
 
-    // Update a Project type with id
-    app.post("/project/update_type", project.updateByType);
+  //   // Update a Project type with id
+  //   app.post("/project/update_type", project.updateByType);
 
-    //Get Project types
-    app.get("/project/get_type", project.getProjectTypes);
+  //   //Get Project types
+  //   app.get("/project/get_type", project.getProjectTypes);
 
   //==================================================== Client Project relation ===============================================
     // Create a new On Project  
@@ -57,6 +60,9 @@ module.exports = app => {
 
   //Get Company's tasks
   app.post("/project/task/get_company_tasks", project.getCompanyTasks);
+
+  //Get tasks assigned me
+  app.post("/project/task/get_assigned_me", project.getTasksAssignedMe);
 
   //Get User's tasks by week
   app.post("/project/task/get_company_tasks/week", project.getCompanyTasksByWeek);

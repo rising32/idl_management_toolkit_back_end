@@ -93,6 +93,20 @@ Task.getCompanyTasks = (company_id, result) => {
   });
 };
 
+//Get All Company's Tasks
+Task.getTasksAssignedMe = (user_id, result) => {
+  sql.query("SELECT t.* FROM `tbl_priority_task` t, (SELECT * FROM tbl_task_assign WHERE member_id = ?) ta WHERE t.task_id = ta.task_id", user_id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    console.log("get Company's all tasks: ", {task:res});
+    result(null, {task:res});
+  });
+};
+
 //Get All User's Tasks
 Task.getCompanyTasksByWeek = (company_id, week, year, result) => {
   var daterange = Util.getDateByWeek(week, year);
