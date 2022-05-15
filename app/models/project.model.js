@@ -56,7 +56,7 @@ Project.getCompanyProjects = (company_id, result) => {
 
 //Get All Projects
 Project.getProjectsAssignedMe = (user_id, result) => {
-  sql.query("SELECT p.* FROM (SELECT * FROM tbl_task_assign WHERE member_id = ?) ta, tbl_priority_task t, tbl_project p WHERE ta.task_id = t.task_id AND p.project_id = t.project_id", user_id, (err, res) => {
+  sql.query("SELECT DISTINCT p.* FROM (SELECT * FROM tbl_task_assign WHERE member_id = ?) ta, tbl_priority_task t, tbl_project p WHERE ta.task_id = t.task_id AND p.project_id = t.project_id", user_id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
