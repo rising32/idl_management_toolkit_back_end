@@ -5,6 +5,7 @@ const Util = require("../common/common.util.js");
 const Task = function(task) {
   this.task_id = task.task_id;
   this.creator_id = task.creator_id,
+  this.company_id = task.company_id,
   this.project_id = task.project_id;
   this.task_name = task.task_name;
   this.planned_start_date = task.planned_start_date;
