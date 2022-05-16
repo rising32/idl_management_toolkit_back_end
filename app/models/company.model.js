@@ -139,7 +139,7 @@ Company.addCompanyMember = (cm, result) => {
 
 //Get All Company Members
 Company.getCompanyMembers = (member_id, result) => {
-  sql.query("select o.*, u.* from tbl_user u, (SELECT cm2.* FROM `tbl_company_member` cm1, tbl_company_member cm2 WHERE cm1.member_id = ? AND cm1.company_id = cm2.company_id) o where u.user_id = o.member_id", 
+  sql.query("select o.*, u.user_id, u.email, u.phone_number, u.password, u.display_name, u.birthday, u.avatar, u.registration_time from tbl_user u, (SELECT cm2.* FROM `tbl_company_member` cm1, tbl_company_member cm2 WHERE cm1.member_id = ? AND cm1.company_id = cm2.company_id) o where u.user_id = o.member_id", 
     member_id, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -154,7 +154,7 @@ Company.getCompanyMembers = (member_id, result) => {
 
 //Get Company's Member
 Company.getCompanyMember = (member_id, result) => {
-  sql.query("select o.member_id, o.company_id, u.* from tbl_user u, (SELECT * FROM `tbl_company_member` WHERE member_id = ?) o where u.user_id = o.member_id", 
+  sql.query("select o.*, u.user_id, u.email, u.phone_number, u.password, u.display_name, u.birthday, u.avatar, u.registration_time from tbl_user u, (SELECT * FROM `tbl_company_member` WHERE member_id = ?) o where u.user_id = o.member_id", 
   member_id, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -167,7 +167,7 @@ Company.getCompanyMember = (member_id, result) => {
 
 //Get Company's Boss
 Company.getCompanyBoss = (member_id, result) => {
-  sql.query("select o.member_id, o.company_id, u.* from tbl_user u, (SELECT c.* from (SELECT company_id FROM `tbl_company_member` WHERE member_id = ?) c1, tbl_company_member c where c1.company_id = c.company_id AND c.role_id = 1) o where u.user_id = o.member_id", 
+  sql.query("select o.*, u.user_id, u.email, u.phone_number, u.password, u.display_name, u.birthday, u.avatar, u.registration_time from tbl_user u, (SELECT c.* from (SELECT company_id FROM `tbl_company_member` WHERE member_id = ?) c1, tbl_company_member c where c1.company_id = c.company_id AND c.role_id = 1) o where u.user_id = o.member_id", 
   member_id, (err, res) => {
     if (err) {
       console.log("error: ", err);
