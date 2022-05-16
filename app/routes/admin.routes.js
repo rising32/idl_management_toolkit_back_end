@@ -41,7 +41,7 @@ module.exports = app => {
     app.post("/company/add_member", company.addCompanyMember);
 
     // Update a Company member type with id
-    app.post("/company/update_by_member", company.updateByMember);
+    app.post("/company/update_member", company.updateCompanyMember);
 
     // Get user's Company member
     app.post("/company/get_company_members", company.getCompanyMembers);

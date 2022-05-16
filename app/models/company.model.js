@@ -178,10 +178,10 @@ Company.getCompanyBoss = (member_id, result) => {
   });
 };
 
-Company.updateByMember = (tm, result) => {
+Company.updateCompanyMember = (cm, result) => {
   sql.query(
     "UPDATE tbl_company_member SET company_id = ?, member_id = ?, role_id = ? WHERE cm_id = ?", 
-      [tm.company_id, tm.member_id, tm.role_id, tm.cm_id], (err, res) => {
+      [cm.company_id, cm.member_id, cm.role_id, cm.cm_id], (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -191,8 +191,8 @@ Company.updateByMember = (tm, result) => {
         result({ kind: "not_found" }, null);
         return;
       }
-      console.log("updated Company member: ", {...tm});
-      result(null, {...tm});
+      console.log("updated Company member: ", {...cm});
+      result(null, {...cm});
     }
   );
 };
